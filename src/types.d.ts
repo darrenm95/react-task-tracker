@@ -5,12 +5,16 @@ interface Task {
   reminder: boolean;
 }
 
+type OnDelete = (id: number) => void;
+
 interface TasksProps {
   tasks: Task[];
+  onDelete: OnDelete;
 }
 
 interface TaskProp {
   task: Task;
+  onDelete: OnDelete;
 }
 
 interface ButtonProps {
