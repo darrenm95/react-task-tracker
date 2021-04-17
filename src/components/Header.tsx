@@ -1,3 +1,5 @@
+import Button from './Button';
+
 type HeaderProps = { title: string } & typeof defaultProps;
 const defaultProps = {
   title: 'Task Tracker',
@@ -5,8 +7,9 @@ const defaultProps = {
 
 const Header = ({ title }: HeaderProps): JSX.Element => {
   return (
-    <header>
+    <header className='header'>
       <h1>{title}</h1>
+      <Button />
     </header>
   );
 };
