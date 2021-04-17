@@ -2,13 +2,6 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 
-interface Task {
-  id: number;
-  text: string;
-  day: string;
-  reminder: boolean;
-}
-
 const initialTasks: Task[] = [
   {
     id: 1,

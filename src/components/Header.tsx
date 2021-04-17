@@ -1,10 +1,6 @@
 import Button from './Button';
 
-interface IHeaderProps {
-  title?: string;
-}
-
-const Header = ({ title = 'Task Tracker' }: IHeaderProps): JSX.Element => {
+const Header = ({ title = 'Task Tracker' }: HeaderProps): JSX.Element => {
   return (
     <header className='header'>
       <h1>{title}</h1>

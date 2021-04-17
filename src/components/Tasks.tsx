@@ -1,13 +1,4 @@
-interface ITasksProps {
-  tasks: {
-    id: number;
-    text: string;
-    day: string;
-    reminder: boolean;
-  }[];
-}
-
-const Tasks = ({ tasks }: ITasksProps): JSX.Element => {
+const Tasks = ({ tasks }: TasksProps): JSX.Element => {
   return (
     <>
       {tasks.map((task) => (
