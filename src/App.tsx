@@ -8,7 +8,7 @@ const App = (): JSX.Element => {
 
   // Delete Task
   const deleteTask = (id: number): void => {
-    console.log('delete', id);
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
   return (
