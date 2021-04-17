@@ -1,7 +1,7 @@
 const Header = (): JSX.Element => {
   return (
     <header>
-      <h1>Task Tracker</h1>
+      <h1>Hello World</h1>
     </header>
   );
 };
