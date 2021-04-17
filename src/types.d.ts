@@ -9,6 +9,10 @@ interface TasksProps {
   tasks: Task[];
 }
 
+interface TaskProp {
+  task: Task;
+}
+
 interface ButtonProps {
   color?: string;
   text: string;

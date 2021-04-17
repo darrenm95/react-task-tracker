@@ -3,7 +3,7 @@ const Tasks = ({ tasks }: TasksProps): JSX.Element => {
   return (
     <>
       {tasks.map((task) => (
-        <Task />
+        <Task key={task.id} task={task} />
       ))}
     </>
   );
