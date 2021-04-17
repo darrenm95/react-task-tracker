@@ -1,9 +1,14 @@
 import Task from './Task';
-const Tasks = ({ tasks, onDelete }: TasksProps): JSX.Element => {
+const Tasks = ({ tasks, onDelete, onToggle }: TasksProps): JSX.Element => {
   return (
     <>
       {tasks.map((task) => (
-        <Task key={task.id} task={task} onDelete={onDelete} />
+        <Task
+          key={task.id}
+          task={task}
+          onDelete={onDelete}
+          onToggle={onToggle}
+        />
       ))}
     </>
   );
