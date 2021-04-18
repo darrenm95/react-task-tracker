@@ -29,13 +29,13 @@ interface HeaderProps {
   title?: string;
 }
 
-type OnAdd = (task: Object) => void;
+type OnAdd = (task: NewTask) => void;
 
 interface AddTaskProps {
   onAdd: OnAdd;
 }
 
-interface AddTaskFormData {
+interface FormValues {
   text: string;
   day: string;
   reminder: boolean;

@@ -6,10 +6,10 @@ import AddTask from './components/AddTask';
 
 const App = (): JSX.Element => {
   const [tasks, setTasks] = useState(initialTasks);
-
+  console.log(typeof tasks);
   // Add Task
-  const addTask = (task: Object): void => {
-    console.log(task);
+  const addTask = (newTask: Task): void => {
+    setTasks([...tasks, newTask]);
   };
 
   // Delete Task

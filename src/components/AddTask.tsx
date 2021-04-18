@@ -1,11 +1,5 @@
 import { useForm } from 'react-hook-form';
 
-type NewTask = {
-  text: string;
-  day: string;
-  reminder: boolean;
-};
-
 const AddTask = ({ onAdd }: AddTaskProps): JSX.Element => {
   const defaultValues = {
     text: '',
@@ -18,11 +12,12 @@ const AddTask = ({ onAdd }: AddTaskProps): JSX.Element => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<NewTask>({ defaultValues });
+  } = useForm<FormValues>({ defaultValues });
 
-  const onSubmit = (data: NewTask): void => {
-    // onAdd({ ...data });
-    console.log(data);
+  const onSubmit = (data: FormValues): void => {
+    const id: number = Math.floor(Math.random() * 10000) + 1;
+    const task: Task = { id, ...data };
+    onAdd(task);
     reset(defaultValues);
   };
 
