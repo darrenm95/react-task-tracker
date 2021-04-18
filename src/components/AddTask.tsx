@@ -1,66 +1,53 @@
-import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+type NewTask = {
+  text: string;
+  day: string;
+  reminder: boolean;
+};
 
 const AddTask = ({ onAdd }: AddTaskProps): JSX.Element => {
-  const initialState = {
+  const defaultValues = {
     text: '',
     day: '',
     reminder: false,
   };
 
-  const [state, setState] = useState(initialState);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<NewTask>({ defaultValues });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-    setState({
-      ...state,
-      [e.target.name]: value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-
-    if (!state.text) {
-      alert('Please add a task');
-      return;
-    }
-
-    onAdd({ ...state });
-
-    setState(initialState);
+  const onSubmit = (data: NewTask): void => {
+    // onAdd({ ...data });
+    console.log(data);
+    reset(defaultValues);
   };
 
   return (
-    <form className='add-form' onSubmit={handleSubmit}>
+    <form className='add-form' onSubmit={handleSubmit(onSubmit)}>
       <div className='form-control'>
-        <label>Task</label>
+        <label htmlFor='text'>Task</label>
         <input
-          type='text'
-          name='text'
+          id='text'
           placeholder='Add Task'
-          value={state.text}
-          onChange={handleChange}
+          {...register('text', {
+            required: 'Task is required.',
+          })}
         />
+        {errors.text && <p style={{ color: 'red' }}>{errors.text.message}</p>}
       </div>
+
       <div className='form-control'>
-        <label>Day & Time</label>
-        <input
-          type='text'
-          name='day'
-          placeholder='Add Day & Time'
-          value={state.day}
-          onChange={handleChange}
-        />
+        <label htmlFor='day'>Day & Time</label>
+        <input id='day' placeholder='Add Day & Time' {...register('day')} />
       </div>
+
       <div className='form-control form-control-check'>
-        <label>Set Reminder</label>
-        <input
-          type='checkbox'
-          name='reminder'
-          checked={state.reminder}
-          onChange={handleChange}
-        />
+        <label htmlFor='reminder'>Set Reminder</label>
+        <input id='reminder' type='checkbox' {...register('reminder')} />
       </div>
 
       <input type='submit' value='Save Task' className='btn btn-block' />

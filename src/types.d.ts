@@ -7,7 +7,6 @@ interface Task {
 
 type OnDelete = (id: number) => void;
 type OnToggle = (id: number) => void;
-type OnAdd = (task: Object) => void;
 
 interface TasksProps {
   tasks: Task[];
@@ -30,6 +29,14 @@ interface HeaderProps {
   title?: string;
 }
 
+type OnAdd = (task: Object) => void;
+
 interface AddTaskProps {
   onAdd: OnAdd;
+}
+
+interface AddTaskFormData {
+  text: string;
+  day: string;
+  reminder: boolean;
 }
