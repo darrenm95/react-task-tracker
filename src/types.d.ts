@@ -23,10 +23,13 @@ interface TaskProp {
 interface ButtonProps {
   color?: string;
   text: string;
+  onClick(): void;
 }
 
 interface HeaderProps {
   title?: string;
+  onAdd(): void;
+  showAdd: boolen;
 }
 
 type OnAdd = (task: NewTask) => void;

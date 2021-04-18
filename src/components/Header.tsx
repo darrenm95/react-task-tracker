@@ -1,10 +1,18 @@
 import Button from './Button';
 
-const Header = ({ title = 'Task Tracker' }: HeaderProps): JSX.Element => {
+const Header = ({
+  title = 'Task Tracker',
+  onAdd,
+  showAdd,
+}: HeaderProps): JSX.Element => {
   return (
     <header className='header'>
       <h1>{title}</h1>
-      <Button color='green' text='Add' />
+      <Button
+        color={showAdd ? 'red' : 'green'}
+        text={showAdd ? 'Close' : 'Add'}
+        onClick={onAdd}
+      />
     </header>
   );
 };
