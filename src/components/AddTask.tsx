@@ -5,7 +5,7 @@ const AddTask = ({ onAdd }: AddTaskProps): JSX.Element => {
   const [day, setDay] = useState('');
   const [reminder, setReminder] = useState(false);
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!text) {
