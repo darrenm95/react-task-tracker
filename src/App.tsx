@@ -7,6 +7,11 @@ import AddTask from './components/AddTask';
 const App = (): JSX.Element => {
   const [tasks, setTasks] = useState(initialTasks);
 
+  // Add Task
+  const addTask = (task: Object): void => {
+    console.log(task);
+  };
+
   // Delete Task
   const deleteTask = (id: number): void => {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -24,7 +29,7 @@ const App = (): JSX.Element => {
   return (
     <div className='container'>
       <Header />
-      <AddTask />
+      <AddTask onAdd={addTask} />
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (

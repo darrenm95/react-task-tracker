@@ -7,6 +7,7 @@ interface Task {
 
 type OnDelete = (id: number) => void;
 type OnToggle = (id: number) => void;
+type OnAdd = (task: Object) => void;
 
 interface TasksProps {
   tasks: Task[];
@@ -27,4 +28,8 @@ interface ButtonProps {
 
 interface HeaderProps {
   title?: string;
+}
+
+interface AddTaskProps {
+  onAdd: OnAdd;
 }
