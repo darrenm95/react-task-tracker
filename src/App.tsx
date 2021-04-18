@@ -18,7 +18,7 @@ const App = (): JSX.Element => {
   };
 
   // Toggle Reminder
-  const toggleReminder = (id: number) => {
+  const toggleReminder = (id: number): void => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, reminder: !task.reminder } : task
