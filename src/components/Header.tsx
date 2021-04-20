@@ -1,5 +1,11 @@
 import Button from './Button';
 
+type HeaderProps = {
+  title?: string;
+  onAdd(): void;
+  showAdd: boolean;
+};
+
 const Header = ({
   title = 'Task Tracker',
   onAdd,

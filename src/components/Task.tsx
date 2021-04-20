@@ -1,4 +1,11 @@
 import { FaTimes } from 'react-icons/fa';
+import { ITask } from './TaskTracker';
+
+type TaskProp = {
+  task: ITask;
+  onDelete(id: number): void;
+  onToggle(id: number): void;
+};
 
 const Task = ({ task, onDelete, onToggle }: TaskProp): JSX.Element => {
   return (

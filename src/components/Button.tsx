@@ -1,3 +1,9 @@
+type ButtonProps = {
+  color?: string;
+  text: string;
+  onClick(): void;
+};
+
 const Button = ({
   color = 'steelblue',
   text,

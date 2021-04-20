@@ -1,4 +1,12 @@
 import Task from './Task';
+import { ITask } from './TaskTracker';
+
+type TasksProps = {
+  tasks: ITask[];
+  onDelete(id: number): void;
+  onToggle(id: number): void;
+};
+
 const Tasks = ({ tasks, onDelete, onToggle }: TasksProps): JSX.Element => {
   return (
     <>

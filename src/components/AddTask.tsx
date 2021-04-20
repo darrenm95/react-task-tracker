@@ -1,7 +1,18 @@
 import { useForm } from 'react-hook-form';
+import { ITask } from './TaskTracker';
+
+type AddTaskProps = {
+  onAdd(task: ITask): void;
+};
+
+type FormValues = {
+  text: string;
+  day: string;
+  reminder: boolean;
+};
 
 const AddTask = ({ onAdd }: AddTaskProps): JSX.Element => {
-  const defaultValues = {
+  const defaultValues: FormValues = {
     text: '',
     day: '',
     reminder: false,
@@ -12,11 +23,11 @@ const AddTask = ({ onAdd }: AddTaskProps): JSX.Element => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormValues>({ defaultValues });
+  } = useForm({ defaultValues });
 
   const onSubmit = (data: FormValues): void => {
     const id: number = Math.floor(Math.random() * 10000) + 1;
-    const task: Task = { id, ...data };
+    const task: ITask = { id, ...data };
     onAdd(task);
     reset(defaultValues);
   };
