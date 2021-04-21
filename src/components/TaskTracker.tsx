@@ -36,7 +36,11 @@ const TaskTracker = (): JSX.Element => {
   };
 
   // Delete Task
-  const deleteTask = (id: number): void => {
+  const deleteTask = async (id: number) => {
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE',
+    });
+
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
