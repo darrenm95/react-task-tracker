@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import initialTasks from '../tasksData.json';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 import Tasks from './Tasks';
 import AddTask from './AddTask';
@@ -13,7 +12,18 @@ export interface ITask {
 
 const TaskTracker = (): JSX.Element => {
   const [showAddTask, setShowAddTask] = useState(false);
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState([] as ITask[]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const res = await fetch('http://localhost:5000/tasks');
+      const data = await res.json();
+
+      console.log(data);
+    };
+
+    fetchTasks();
+  }, []);
 
   // Add Task
   const addTask = (newTask: ITask): void => {
