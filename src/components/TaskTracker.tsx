@@ -31,8 +31,18 @@ const TaskTracker = (): JSX.Element => {
   }, []);
 
   // Add Task
-  const addTask = (newTask: ITask): void => {
-    setTasks([...tasks, newTask]);
+  const addTask = async (task: ITask) => {
+    const res = await fetch('http://localhost:5000/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(task),
+    });
+
+    const data = await res.json();
+
+    setTasks([...tasks, data]);
   };
 
   // Delete Task
@@ -54,7 +64,7 @@ const TaskTracker = (): JSX.Element => {
   };
 
   return (
-    <div className='container'>
+    <div>
       <Header
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
