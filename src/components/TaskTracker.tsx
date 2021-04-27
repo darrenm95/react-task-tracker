@@ -88,19 +88,35 @@ const TaskTracker = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <Header
-        onAdd={() => setShowAddTask(!showAddTask)}
-        showAdd={showAddTask}
-      />
-      {showAddTask && <AddTask onAdd={addTask} />}
-      {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
-      ) : (
-        'No Tasks To Show'
-      )}
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Header
+          onAdd={() => setShowAddTask(!showAddTask)}
+          showAdd={showAddTask}
+        />
+
+        <Route
+          path='/'
+          exact
+          render={() => (
+            <>
+              {showAddTask && <AddTask onAdd={addTask} />}
+              {tasks.length > 0 ? (
+                <Tasks
+                  tasks={tasks}
+                  onDelete={deleteTask}
+                  onToggle={toggleReminder}
+                />
+              ) : (
+                'No Tasks To Show'
+              )}
+            </>
+          )}
+        />
+        <Route path='/about' component={About} />
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
