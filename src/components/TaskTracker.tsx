@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './Header';
 import Tasks from './Tasks';
 import AddTask from './AddTask';
 import Footer from './Footer';
+import About from './About';
 
 type Task = {
   id: number;
