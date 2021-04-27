@@ -1,13 +1,20 @@
+import React from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { ITask } from './TaskTracker';
+
+type Task = {
+  id: number;
+  text: string;
+  day: string;
+  reminder: boolean;
+};
 
 type TaskProp = {
-  task: ITask;
+  task: Task;
   onDelete(id: number): void;
   onToggle(id: number): void;
 };
 
-const Task = ({ task, onDelete, onToggle }: TaskProp): JSX.Element => {
+const SingleTask = ({ task, onDelete, onToggle }: TaskProp): JSX.Element => {
   return (
     <div
       className={`task ${task.reminder ? 'reminder' : ''}`}
@@ -25,4 +32,4 @@ const Task = ({ task, onDelete, onToggle }: TaskProp): JSX.Element => {
   );
 };
 
-export default Task;
+export default SingleTask;

@@ -1,3 +1,5 @@
+import React from 'react';
+
 type ButtonProps = {
   color?: string;
   text: string;
@@ -11,6 +13,7 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   return (
     <button
+      type='button'
       style={{ backgroundColor: color }}
       className='btn'
       onClick={onClick}

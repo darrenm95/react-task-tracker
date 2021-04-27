@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Tasks from './Tasks';
 import AddTask from './AddTask';
 
-export interface ITask {
+type Task = {
   id: number;
   text: string;
   day: string;
   reminder: boolean;
-}
+};
 
 const TaskTracker = (): JSX.Element => {
   const [showAddTask, setShowAddTask] = useState(false);
-  const [tasks, setTasks] = useState([] as ITask[]);
+  const [tasks, setTasks] = useState([] as Task[]);
 
   // Fetch Tasks
-  const fetchTasks = async (): Promise<ITask[]> => {
+  const fetchTasks = async (): Promise<Task[]> => {
     const res = await fetch('http://localhost:5000/tasks');
     const data = await res.json();
 
@@ -23,7 +23,7 @@ const TaskTracker = (): JSX.Element => {
   };
 
   // Fetch Task
-  const fetchTask = async (id: number): Promise<ITask> => {
+  const fetchTask = async (id: number): Promise<Task> => {
     const res = await fetch(`http://localhost:5000/tasks/${id}`);
     const data = await res.json();
 
@@ -39,7 +39,7 @@ const TaskTracker = (): JSX.Element => {
   }, []);
 
   // Add Task
-  const addTask = async (task: ITask): Promise<void> => {
+  const addTask = async (task: Task): Promise<void> => {
     const res = await fetch('http://localhost:5000/tasks', {
       method: 'POST',
       headers: {
@@ -79,8 +79,8 @@ const TaskTracker = (): JSX.Element => {
 
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, reminder: data.reminder } : task
-      )
+        task.id === id ? { ...task, reminder: data.reminder } : task,
+      ),
     );
   };
 

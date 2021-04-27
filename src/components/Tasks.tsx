@@ -1,8 +1,15 @@
-import Task from './Task';
-import { ITask } from './TaskTracker';
+import React from 'react';
+import SingleTask from './SingleTask';
+
+type Task = {
+  id: number;
+  text: string;
+  day: string;
+  reminder: boolean;
+};
 
 type TasksProps = {
-  tasks: ITask[];
+  tasks: Task[];
   onDelete(id: number): void;
   onToggle(id: number): void;
 };
@@ -11,7 +18,7 @@ const Tasks = ({ tasks, onDelete, onToggle }: TasksProps): JSX.Element => {
   return (
     <>
       {tasks.map((task) => (
-        <Task
+        <SingleTask
           key={task.id}
           task={task}
           onDelete={onDelete}
