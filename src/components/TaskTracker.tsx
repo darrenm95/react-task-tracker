@@ -15,7 +15,7 @@ const TaskTracker = (): JSX.Element => {
   const [tasks, setTasks] = useState([] as ITask[]);
 
   // Fetch Tasks
-  const fetchTasks = async () => {
+  const fetchTasks = async (): Promise<ITask[]> => {
     const res = await fetch('http://localhost:5000/tasks');
     const data = await res.json();
 
@@ -23,15 +23,15 @@ const TaskTracker = (): JSX.Element => {
   };
 
   // Fetch Task
-  const fetchTask = async (id: number) => {
-    const res = await fetch(`http://localhost:5000/task/${id}`);
+  const fetchTask = async (id: number): Promise<ITask> => {
+    const res = await fetch(`http://localhost:5000/tasks/${id}`);
     const data = await res.json();
 
     return data;
   };
 
   useEffect(() => {
-    const getTasks = async () => {
+    const getTasks = async (): Promise<void> => {
       const tasksFromServer = await fetchTasks();
       setTasks(tasksFromServer);
     };
@@ -39,7 +39,7 @@ const TaskTracker = (): JSX.Element => {
   }, []);
 
   // Add Task
-  const addTask = async (task: ITask) => {
+  const addTask = async (task: ITask): Promise<void> => {
     const res = await fetch('http://localhost:5000/tasks', {
       method: 'POST',
       headers: {
@@ -54,7 +54,7 @@ const TaskTracker = (): JSX.Element => {
   };
 
   // Delete Task
-  const deleteTask = async (id: number) => {
+  const deleteTask = async (id: number): Promise<void> => {
     await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'DELETE',
     });
@@ -63,10 +63,23 @@ const TaskTracker = (): JSX.Element => {
   };
 
   // Toggle Reminder
-  const toggleReminder = (id: number): void => {
+  const toggleReminder = async (id: number): Promise<void> => {
+    const taskToToggle = await fetchTask(id);
+    const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
+
+    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(updTask),
+    });
+
+    const data = await res.json();
+
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, reminder: !task.reminder } : task
+        task.id === id ? { ...task, reminder: data.reminder } : task
       )
     );
   };
