@@ -22,6 +22,14 @@ const TaskTracker = (): JSX.Element => {
     return data;
   };
 
+  // Fetch Task
+  const fetchTask = async (id: number) => {
+    const res = await fetch(`http://localhost:5000/task/${id}`);
+    const data = await res.json();
+
+    return data;
+  };
+
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks();
