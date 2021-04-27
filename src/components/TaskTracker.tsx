@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Tasks from './Tasks';
 import AddTask from './AddTask';
+import Footer from './Footer';
 
 type Task = {
   id: number;
@@ -96,6 +97,7 @@ const TaskTracker = (): JSX.Element => {
       ) : (
         'No Tasks To Show'
       )}
+      <Footer />
     </div>
   );
 };
